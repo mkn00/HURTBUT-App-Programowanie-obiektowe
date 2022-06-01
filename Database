@@ -1,0 +1,49 @@
+USE master; 
+
+GO 
+
+IF DB_ID (N'ShoeShop') IS NOT NULL 
+
+DROP DATABASE ShoeShop; 
+
+CREATE DATABASE ShoeShop 
+
+COLLATE Polish_100_CI_AS; 
+
+GO 
+
+IF DB_ID (N'ShoeShop') IS NOT NULL 
+
+SELECT 'Database succsessfully created' 
+
+
+CREATE TABLE [dbo].[Buty męskie]([ID] [int] PRIMARY KEY IDENTITY,
+[Nazwa] [nvarchar] (500) NOT NULL,
+[Marka] [nvarchar] (500) NOT NULL,
+[Rozmair] [float] NOT NULL,
+[Opis] [nvarchar] (500),
+[Cena] [decimal] (8,2))
+CREATE TABLE [dbo].[Buty damskie]([ID] [int] PRIMARY KEY IDENTITY,
+[Nazwa] [nvarchar] (500) NOT NULL,
+[Marka] [nvarchar] (500) NOT NULL,
+[Rozmair] [float] NOT NULL,
+[Opis] [nvarchar] (500),
+[Cena] [decimal] (8,2))
+CREATE TABLE [dbo].[Buty unisex]([ID] [int] PRIMARY KEY IDENTITY,
+[Nazwa] [nvarchar] (500) NOT NULL,
+[Marka] [nvarchar] (500) NOT NULL,
+[Rozmair] [float] NOT NULL,
+[Opis] [nvarchar] (500),
+[Cena] [decimal] (8,2))
+CREATE TABLE [dbo].[Akcesoria]([ID] [int] PRIMARY KEY IDENTITY,
+[Nazwa] [nvarchar] (500) NOT NULL,
+[Marka] [nvarchar] (500) NOT NULL,
+[Rozmair] [float] NULL,
+[Opis] [nvarchar] (500) NULL,
+[Cena] [decimal] (8,2))
+CREATE TABLE [dbo].[DaneKlienta]([ID] [int] PRIMARY KEY IDENTITY, 
+[Imie] [nvarchar] (250) NOT NULL, 
+[Nazwisko] [nvarchar] (100) NOT NULL,  
+[Email] [nvarchar] (250) NOT NULL, 
+[Telefon] [nvarchar] (20) NULL, 
+[AdresRozliczeniowy] [nvarchar] (1000) NULL)
