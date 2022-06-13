@@ -1,4 +1,3 @@
-
 IF DB_ID (N'ShoeShop') IS NOT NULL 
 
 DROP DATABASE ShoeShop; 
@@ -14,79 +13,64 @@ IF DB_ID (N'ShoeShop') IS NOT NULL
 SELECT 'Database succsessfully created' 
 
 USE ShoeShop
-CREATE TABLE [dbo].[Buty męskie]([ID] [int] PRIMARY KEY IDENTITY,
-[Nazwa] [nvarchar] (500) NOT NULL,
-[Marka] [nvarchar] (500) NOT NULL,
-[Rozmiar] [float] NOT NULL,
-[Opis] [nvarchar] (500),
-[Cena] [decimal] (8,2))
-CREATE TABLE [dbo].[Buty damskie]([ID] [int] PRIMARY KEY IDENTITY,
-[Nazwa] [nvarchar] (500) NOT NULL,
-[Marka] [nvarchar] (500) NOT NULL,
-[Rozmiar] [float] NOT NULL,
-[Opis] [nvarchar] (500),
-[Cena] [decimal] (8,2))
-CREATE TABLE [dbo].[Buty unisex]([ID] [int] PRIMARY KEY IDENTITY,
-[Nazwa] [nvarchar] (500) NOT NULL,
-[Marka] [nvarchar] (500) NOT NULL,
-[Rozmiar] [float] NOT NULL,
-[Opis] [nvarchar] (500),
-[Cena] [decimal] (8,2))
-CREATE TABLE [dbo].[Akcesoria]([ID] [int] PRIMARY KEY IDENTITY,
-[Nazwa] [nvarchar] (500) NOT NULL,
-[Marka] [nvarchar] (500) NOT NULL,
+CREATE TABLE [dbo].[StanMagazynu]([ID] [int] PRIMARY KEY IDENTITY,
+[Nazwa] [nvarchar] (500) NULL,
+[Marka] [nvarchar] (500) NULL,
 [Rozmiar] [float] NULL,
-[Opis] [nvarchar] (500) NULL,
+[Stan] [int] NULL,
 [Cena] [decimal] (8,2))
-CREATE TABLE [dbo].[DaneKlienta]([ID] [int] PRIMARY KEY IDENTITY, 
+CREATE TABLE [dbo].[Pracownicy]([ID] [int] PRIMARY KEY IDENTITY, 
 [Imie] [nvarchar] (250) NOT NULL, 
 [Nazwisko] [nvarchar] (100) NOT NULL,  
 [Email] [nvarchar] (250) NOT NULL, 
-[Telefon] [nvarchar] (20) NULL, 
-[AdresRozliczeniowy] [nvarchar] (1000) NULL)
+[Telefon] [nvarchar] (20) NULL,
+[AdresRozliczeniowy] [nvarchar] (1000) NULL,
+[Stanowisko] [nvarchar] (50) NOT NULL)
 CREATE TABLE [dbo].[Login]([ID] [int] PRIMARY KEY IDENTITY,
 [Login] [nvarchar] (50) NOT NULL,
 [Haslo] [nvarchar] (50) NOT NULL)
+CREATE TABLE [dbo].[Zamowienia]([ID] [int] PRIMARY KEY IDENTITY,
+[DataZ] [date] NOT NULL,
+[Email] [nvarchar] (250) NOT NULL,
+[Firma] [nvarchar] (250) NOT NULL)
 INSERT INTO Login VALUES 
 ('admin', '12345'),
 ('pracownik', '67890')
-INSERT INTO DaneKlienta(Imie, Nazwisko, Email, Telefon, AdresRozliczeniowy) 
-VALUES ('Katarzyna', 'Święcan', 'kswiecan@onet.pl', '884317743', 'al. Gruszkowa 6/3, Konin'), 
-('Michał', 'Opal', 'opalek2@gmail.com', '884815648', 'ul. Ghandiego 14, Kraków'), 
-('Simon', 'Frączek', 'simonf@wp.pl', '885515255', 'ul. Matołkowa 5, Pacanowo'), 
-('Karol', 'Neuhaus', 'nowydomek@gmail.com', '517109128', 'ul. Obca 54, Koszalin'), 
-('Ambroży', 'Kleks', 'akademianaa@wp.pl', '885515763', 'ul. Szpakowa, Andrychów'), 
-('Paulina', 'Jop', 'paulinajop@onet.pl', '696919128', 'al. Mickiewicza 4c/17'), 
-('Balbina', 'Gąsiewska', 'gaskabalbina@onet.pl', '512617626', 'ul. Mąki 4, Białystok'), 
-('Piotr', 'Wielicki', 'piotrwielicki2@wp.pl', '512819773', 'ul. Główna 4, Wieliczka'), 
-('Anna', 'Ząb', 'annazab@gmail.com', '512819128', 'al. Aktywna 41, Częstochowa'), 
-('Weronika', 'Oliwa', 'weronikaoliwa@gmail.com', '512516925', 'ul. Andersa 44, Poznań'), 
-('Krystian', 'Lubczyk', 'lubczykk@onet.pl', '513819128', 'ul. Otwarta 15, Wisła'), 
-('Leon', 'Kromka', 'kromal@wp.pl', '885217852', 'al. Główna 72/3, Bydgoszcz'), 
-('Marcin', 'Kostka', 'kostka91@gmail.com', '513816524', 'ul. Psia 79, Krynica Zdrój'), 
-('Marek', 'Grechuta', 'niemuzyk@onet.pl', '844185844', 'ul. Łazienkowska 44, Warszawa')
-INSERT INTO Akcesoria(Nazwa, Marka, Rozmiar, Opis, Cena)
-VALUES ('PLECAK NIKE HAYWARD', 'NIKE', '', 'Nike Hayward Backpack to esencja miejskiego stylu – jest praktyczny, uwalnia ręce od zbędnego balastu i pasuje absolutnie do wszystkiego.', '179.99'),
-('PLECAK OLD SKOOL III BACKPACK', 'VANS', '', ' Model wykonano z dobrej jakości poliestru, który zapewnia lekkość i łatwe czyszczenie.', '110.49'),
-('SKARPETY NIKE EVERYDAY LIGHTWEIGHT NO\SHOW', 'NIKE', '', 'Znakomite skarpetki, które sprawdzą się zarówno w codziennych, jak i sportowych stylizacjach.', '44.99'),
-('SKARPETY SOLID CREW SOCK', 'ADIDAS', '', 'Skarpetki stały się nieodłącznym elementem streetwearowych stylizacji. Trójpak SOLID CREW SOCK od adidas znakomicie dopełni Twoje ulubione sneakersy.', '59.99'),
-('ZESTAW CZYSZCZĄCY TOOLBOX', 'EMPIRE', '', ' W prezentowanym zestawie znajdziesz wszystko, co potrzebne jest do pielęgnacji obuwia: trzy środki w spray’u, gąbka oraz szczotka.', '119.99'),
-('TOREBKA LUKKA BLK', 'ELLESSE', '', 'To model, który błyskawicznie polubisz i zapragniesz zabierać ze sobą dosłownie wszędzie. Wszystko za sprawą oldschoolowego designu o prostokątnym kształcie z zaokrąglonymi krawędziami.', '84.99')
-INSERT INTO [Buty męskie](Nazwa, Marka, Rozmiar, Opis, Cena)
-VALUES ('Jordan Series ES', 'JORDAN', '44.5', 'Gumowa podeszwa daje więcej niż tylko imponującą przyczepność – dodatkowo opowiada, jak MJ wybrał numer 23.', '399.99'),
-('Jordan Break Slide', 'JORDAN', '42.0', 'Klapki Jordan Break Slide oferują klasyczny design.', '149.99'),
-('Nike Blazer Mid 77 Vintage', 'NIKE', '41.0', 'Ponadczasowy klasyk gwarantujący wygodę i flagowy design.', '399.99'),
-('Adidas Forum Low', 'ADIDAS', '43.5', 'Poczuj energię lat 80. za każdym razem, gdy je zakładasz.', '399.99'),
-('Under Armour Jet 21', 'UNDER ARMOUR', '47.0', 'UA to sprzęt, który nosisz wtedy, gdy ma to największe znaczenie: najcięższe treningi, najważniejsze mecze.', '359.99')
-INSERT INTO [Buty damskie](Nazwa, Marka, Rozmiar, Opis, Cena)
-VALUES ('Womens Nike Dunk Low "Banana"', 'NIKE', '36.5', 'Doskonałe buty, które zapewniają długotrwałą wygodę i klasyczny styl.', '549.99'),
-('Womens Air Jordan 1 Mid "Valentines Day"', 'NIKE', '37.0', 'Buty Air Jordan 1 Mid zapewniają wyjątkowy styl, powiew legendy i niezrównaną wygodę na boisku.', '649.99'),
-('Womens Nike Blazer Low 77', 'NIKE', '36.5', 'Efektowna skóra, logo Swoosh w stylu retro i niezwykle miękki niskoprofilowy kołnierz sprawiają, że ten model trzeba mieć w swojej szafie.', '429.99'),
-('Converse Chuck Taylor All Star Low All Black', 'CONVERSE', '36.0', 'Buty lifestyle Converse Chuck Taylor All Star Low All Black idealnie sprawdzą się w codziennym użytkowaniu. ', '181.99'),
-('UA OLD SKOOL', 'VANS', '38.0', 'Vans Old Skool to już klasyka miejskich stylizacji! Model ozdobiony motywem fali, debiutujący już w 1977 roku, do dziś nie schodzi z listy topowych butów w świecie streetwearu.', '254.99')
-INSERT INTO [Buty unisex](Nazwa, Marka, Rozmiar, Opis, Cena)
-VALUES ('Bayaband Clog 205089 Charcoal/Volt Green', 'CROCS', '39.5', 'Wsuwane buty na lato to świetna propozycja dla Ciebie, jeśli cenisz sobie szybkie i łatwe zakładanie obuwia.', '229.00'),
-('Classic Slip-On VN0A33TB42U1 (Bandana)True Bl/True Wht', 'VANS', '37.0', 'Idealny but na lato oraz jesień.', '206.00'),
-('Eezay Flip Flop EG2042 Cblack/Twwht/Cblack', 'ADIDAS', '39.0', 'Podeszwy wykonane z elastycznej pianki EVA amortyzują uderzenia i są niezwykle giętkie. Załóż ulubione klapki kąpielowe i ciesz się niebywałym komfortem!', '79.00'),
-('Reese Breaker Seamless 211940-2001 Black', 'HUMMEL', '40.5', 'Powyższe buty o sportowym charakterze zostały wposażone w twardą wyściółkę, która nietylko jest odporniejsza na powstawanie wytarć, ale też stabilizuje stopy w czasie wykonywanych ruchów. W sam raz do efektywnego treningu!', '215.00'),
-('Vegan 1460 14045001 Black', 'DR.MARTENS', '41.0', 'Buty na płaskiej podeszwie zapewnią Ci wygodę oraz bezpieczeństwo. Stąpaj pewnie, ciesząc się całkowitą swobodą ruchów.', '639.00')
+INSERT INTO Pracownicy(Imie, Nazwisko, Email, Telefon, AdresRozliczeniowy, Stanowisko) 
+VALUES ('Katarzyna', 'Święcan', 'kswiecan@onet.pl', '884317743', 'al. Gruszkowa 6/3, Konin', 'Pracownik'), 
+('Michał', 'Opal', 'opalek2@gmail.com', '884815648', 'ul. Ghandiego 14, Kraków', 'Administrator'), 
+('Simon', 'Frączek', 'simonf@wp.pl', '885515255', 'ul. Matołkowa 5, Pacanowo', 'Pracownik'), 
+('Karol', 'Neuhaus', 'nowydomek@gmail.com', '517109128', 'ul. Obca 54, Koszalin', 'Pracownik'), 
+('Ambroży', 'Kleks', 'akademianaa@wp.pl', '885515763', 'ul. Szpakowa, Andrychów', 'Pracownik'), 
+('Paulina', 'Jop', 'paulinajop@onet.pl', '696919128', 'al. Mickiewicza 4c/17', 'Pracownik'), 
+('Balbina', 'Gąsiewska', 'gaskabalbina@onet.pl', '512617626', 'ul. Mąki 4, Białystok', 'Pracownik'), 
+('Piotr', 'Wielicki', 'piotrwielicki2@wp.pl', '512819773', 'ul. Główna 4, Wieliczka', 'Pracownik'), 
+('Anna', 'Ząb', 'annazab@gmail.com', '512819128', 'al. Aktywna 41, Częstochowa', 'Administrator'), 
+('Weronika', 'Oliwa', 'weronikaoliwa@gmail.com', '512516925', 'ul. Andersa 44, Poznań', 'Administrator'), 
+('Krystian', 'Lubczyk', 'lubczykk@onet.pl', '513819128', 'ul. Otwarta 15, Wisła', 'Administrator'), 
+('Leon', 'Kromka', 'kromal@wp.pl', '885217852', 'al. Główna 72/3, Bydgoszcz', 'Pracownik'), 
+('Marcin', 'Kostka', 'kostka91@gmail.com', '513816524', 'ul. Psia 79, Krynica Zdrój', 'Pracownik'), 
+('Marek', 'Grechuta', 'niemuzyk@onet.pl', '844185844', 'ul. Łazienkowska 44, Warszawa', 'Administrator')
+INSERT INTO StanMagazynu(Nazwa, Marka, Rozmiar, Stan, Cena)
+VALUES ('Jordan Series ES', 'JORDAN', '44.5', '44', '399.99'),
+('Jordan Break Slide', 'JORDAN', '42.0', '100', '149.99'),
+('Nike Blazer Mid 77 Vintage', 'NIKE', '41.0', '30', '399.99'),
+('Adidas Forum Low', 'ADIDAS', '43.5', '33', '399.99'),
+('Womens Air Jordan 1 Mid "Valentines Day"', 'NIKE', '37.0', '12', '649.99'),
+('Womens Nike Blazer Low 77', 'NIKE', '36.5', '3', '429.99'),
+('Bayaband Clog 205089 Charcoal/Volt Green', 'CROCS', '39.5', '22', '229.00'),
+('Classic Slip-On VN0A33TB42U1 (Bandana)True Bl/True Wht', 'VANS', '37.0', '3', '206.00'),
+('Eezay Flip Flop EG2042 Cblack/Twwht/Cblack', 'ADIDAS', '39.0', '6', '79.00'),
+('Jordan Break Slide', 'JORDAN', '41.0', '100', '149.99'),
+('Womens Nike Blazer Low 77', 'NIKE', '39.5', '3', '429.99'),
+('Bayaband Clog 205089 Charcoal/Volt Green', 'CROCS', '45.0', '22', '229.00'),
+('Womens Air Jordan 1 Mid "Valentines Day"', 'NIKE', '39.0', '5', '649.99'),
+('Jordan Break Slide', 'JORDAN', '44.0', '50', '149.99')
+INSERT INTO Zamowienia(DataZ, Email, Firma)
+VALUES ('2020-05-01', 'ut.tincidunt@outlook.ed', 'Ac Corporation'),
+('2020-07-03', 'ut.quam@outlook.couk', 'Egestas A Dui LLC'),
+('2021-10-11', 'non.massa@outlook.ne', 'Pede Cum Sociis LLP'),
+('2020-06-07', 'donec@hotmail.edu', 'Vel Mauris LLC'),
+('2020-01-11', 'consectetuer@protonmail.org', 'Pellentesque Eget Limited'),
+('2021-10-10', 'sagittis.duis@outlook.or', 'Scelerisque Dui LLP'),
+('2022-06-07', 'dui.lectus@hotmail.ca', 'Etiam Ltd')
