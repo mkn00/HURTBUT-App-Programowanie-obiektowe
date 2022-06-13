@@ -44,6 +44,12 @@ CREATE TABLE [dbo].[DaneKlienta]([ID] [int] PRIMARY KEY IDENTITY,
 [Email] [nvarchar] (250) NOT NULL, 
 [Telefon] [nvarchar] (20) NULL, 
 [AdresRozliczeniowy] [nvarchar] (1000) NULL)
+CREATE TABLE [dbo].[Login]([ID] [int] PRIMARY KEY IDENTITY,
+[Login] [nvarchar] (50) NOT NULL,
+[Haslo] [nvarchar] (50) NOT NULL)
+INSERT INTO Login VALUES 
+('admin', '12345'),
+('pracownik', '67890')
 INSERT INTO DaneKlienta(Imie, Nazwisko, Email, Telefon, AdresRozliczeniowy) 
 VALUES ('Katarzyna', 'Święcan', 'kswiecan@onet.pl', '884317743', 'al. Gruszkowa 6/3, Konin'), 
 ('Michał', 'Opal', 'opalek2@gmail.com', '884815648', 'ul. Ghandiego 14, Kraków'), 
