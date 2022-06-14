@@ -33,6 +33,10 @@ CREATE TABLE [dbo].[Zamowienia]([ID] [int] PRIMARY KEY IDENTITY,
 [DataZ] [date] NOT NULL,
 [Email] [nvarchar] (250) NOT NULL,
 [Firma] [nvarchar] (250) NOT NULL)
+CREATE TABLE [dbo].[AdminLog]([ID] [int] PRIMARY KEY IDENTITY,
+[HasloA] [nvarchar] (50) NOT NULL)
+INSERT INTO AdminLog(HasloA) VALUES
+('12345')
 INSERT INTO Login VALUES 
 ('admin', '12345'),
 ('pracownik', '67890')
